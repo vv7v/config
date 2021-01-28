@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AdminSeo>
+  <!--获取规则-->
+  <GetRules>
+    <!--百度权重获取正则-->
+    <GetBaiDuSort>
+      <!--获取地址-->
+      <GetUrl><![CDATA[http://mytool.chinaz.com/baidusort.aspx?host=(1)]]></GetUrl>
+      <!--正则-->
+      <Regex><![CDATA[<font color="blue">(.*?)</font>&nbsp;&nbsp;&nbsp;关键词数：<font color="blue">(.*?)</font>&nbsp;&nbsp;&nbsp;预估百度流量：<font color="blue">(.*?)</font>]]></Regex>
+      <!--失败正则-->
+      <Failure_Regex><![CDATA[请求太频繁]]></Failure_Regex>
+      <!--其他正则-->
+      <Other_Regex><![CDATA[>暂无数据。</div>]]></Other_Regex>
+    </GetBaiDuSort>
+    <!--中文 谷歌排名列表获取正则-->
+    <GetGoogleRankCN>
+      <GetUrl><![CDATA[https://www.google.com.hk/search?q=(1)&hl=zh-CN]]></GetUrl>
+      <PageAdd><![CDATA[&start=(1)0]]></PageAdd>
+      <Regex><![CDATA[<div class="g">.*?<a[^<>]*?hrefs*=s*['"s]([^"']*)['"][^<>]*?>(.*?)</a>]]></Regex>
+      <Failure_Regex><![CDATA[我们的系统检测到您的计算机网络中存在异常流量|如要繼續，請輸入以下字元|请键入下图显示的字符以继续操作|https://www.google.com.hk/accounts/TOS|您的电脑或所在的局域网络有异常的访问|ipv4.google.com/sorry]]></Failure_Regex>
+    </GetGoogleRankCN>
+    <!--百度排名获取正则-->
+    <GetBaiDuRankCN>
+      <GetUrl><![CDATA[http://www.baidu.com/s?wd=(1)]]></GetUrl>
+      <PageAdd><![CDATA[&pn=(1)0]]></PageAdd>
+      <!--<Regex><![CDATA[<h3 class="t(\s*)(c-gap-bottom-small|ecl-ec-title c-gap-bottom-small|)">.*?<a[^<>]*?hrefs*(\s*)=(\s*)s*['"s]([^"']*)['"][^<>]*?>(.*?)</a>(.*?)</h3>]]></Regex>-->
+      <Regex><![CDATA[<h3 class="t\s*[a-z-]*">.*?<a[^<>]*?hrefs*\s*=\s*s*['"s]([^"']*link\?url=[^"']*)['"][^<>]*?>(.*?)</a>(.*?)</h3>]]></Regex>
+      <Failure_Regex><![CDATA[您的电脑或所在的局域网络有异常的访问|请输入以下验证码|<h1 id="mainTitle">此程序无法显示网页</h1>]]></Failure_Regex>
+    </GetBaiDuRankCN>
+    <!--百度排名获取正则 移动-->
+    <GetBaiDuRankCN_Mobile>
+      <!--<GetUrl><![CDATA[http://m.baidu.com/s?&word=(1)]]></GetUrl>-->
+      <GetUrl><![CDATA[http://www.baidu.com/s?wd=(1)]]></GetUrl>
+      <PageAdd><![CDATA[&pn=(1)0]]></PageAdd>
+      <Regex><![CDATA['mu':'(.*?)'}]]></Regex>
+      <Failure_Regex><![CDATA[您的电脑或所在的局域网络有异常的访问|请输入以下验证码|<h1 id="mainTitle">此程序无法显示网页</h1>]]></Failure_Regex>
+    </GetBaiDuRankCN_Mobile>
+    <!--中文360排名获取正则-->
+    <Get360RankCN>
+      <GetUrl><![CDATA[https://www.so.com/s?q=(1)]]></GetUrl>
+      <PageAdd><![CDATA[&pn=(1)]]></PageAdd>
+      <Regex><![CDATA[<li class="res-list">.*?<a[^<>]*?hrefs*=s*['"s]([^"']*)['"][^<>]*?>(.*?)</a>]]></Regex>
+      <Failure_Regex><![CDATA[]]></Failure_Regex>
+    </Get360RankCN>
+    <!--中文360排名获取正则 移动-->
+    <Get360RankCN_Mobile>
+      <GetUrl><![CDATA[https://m.so.com/s?q=(1)]]></GetUrl>
+      <PageAdd><![CDATA[&pn=(1)0]]></PageAdd>
+      <Regex><![CDATA[<span class='res-site-url'>(.*?)</span>]]></Regex>
+      <Failure_Regex><![CDATA[您的电脑或所在的局域网络有异常的访问|请输入以下验证码|<h1 id="mainTitle">此程序无法显示网页</h1>]]></Failure_Regex>
+    </Get360RankCN_Mobile>
+    <!--神马排名获取正则 移动-->
+    <GetSMRankCN_Mobile>
+      <!--<GetUrl><![CDATA[http://m.sm.cn/s?q=(1)&by=submit&from=wm705879&safe=1]]></GetUrl>-->
+      <GetUrl><![CDATA[http://m.sm.cn/s?q=(1)&by=submit&from=wm705879&tomode=center&safe=1]]></GetUrl>
+      <PageAdd><![CDATA[&page=(1)]]></PageAdd>
+      <Regex><![CDATA[<h2><a[^<>]*?hrefs*=s*['"s]([^"']*)['"][^<>]*?>(.*?)</a></h2>]]></Regex>
+      <Failure_Regex><![CDATA[您的电脑或所在的局域网络有异常的访问|请输入以下验证码|<h1 id="mainTitle">此程序无法显示网页</h1>]]></Failure_Regex>
+    </GetSMRankCN_Mobile>
+    <!--英文 谷歌排名列表获取正则 -->
+    <GetGoogleRankEN>
+      <GetUrl><![CDATA[https://www.google.com/search?q=(1)&hl=en]]></GetUrl>
+      <PageAdd><![CDATA[&start=(1)0]]></PageAdd>
+      <!--<Regex><![CDATA[<h3 class="r">.*?<a[^<>]*?hrefs*=s*['"s]([^"']*)['"][^<>]*?>(.*?)</a></h3>]]></Regex>-->
+      <!--<Regex><![CDATA[<a[^<>-]*?hrefs*=s*['\"s]([^\"']*)['\"][^<>]*?><h3 class="\w+">.*?</h3>]]></Regex>-->
+      <Regex><![CDATA[<a hrefs*=s*['"s]([^"']*)['"][^<>=]*?onmousedown=[^<>=]*?>(.*?)</h3>(.*?)</a>]]></Regex>
+      <Failure_Regex><![CDATA[我们的系统检测到您的计算机网络中存在异常流量|请键入下图显示的字符以继续操作|https://www.google.com.hk/accounts/TOS|您的电脑或所在的局域网络有异常的访问|ipv4.google.com/sorry]]></Failure_Regex>
+    </GetGoogleRankEN>
+    <!--英文Yahoo获取正则-->
+    <GetYahooRankEN>
+      <GetUrl><![CDATA[http://search.yahoo.com/search?p=(1)]]></GetUrl>
+      <PageAdd><![CDATA[&b=(1)1]]></PageAdd>
+      <Regex><![CDATA[<li  ><div(.*?)</div></li>]]></Regex>
+      <GetRulesTitle><![CDATA[<h3 class="title"><a[^<>]*?hrefs*\s*=\s*['"s]([^"']*)['"][^<>]*?>(.*?)</a>(.*?)</h3>]]></GetRulesTitle>
+      <GetRulesConn><![CDATA[<p class="lh-16">(.*?)</p>]]></GetRulesConn>
+      <!--连接需要处理-->
+      <Failure_Regex><![CDATA[Unable to process request at this time]]></Failure_Regex>
+    </GetYahooRankEN>
+    <!--英文Bing 获取正则-->
+    <GetBingRankEN>
+      <GetUrl><![CDATA[http://www.bing.com/search?q=(1)]]></GetUrl>
+      <PageAdd><![CDATA[&first=(1)1]]></PageAdd>
+      <Regex><![CDATA[<li class="b_algo">(.*?)</li>]]></Regex>
+      <GetRulesTitle><![CDATA[<h2><a[^<>]*?hrefs*\s*=\s*['"s]([^"']*)['"][^<>]*?>(.*?)</a></h2>]]></GetRulesTitle>
+      <GetRulesConn><![CDATA[<p>(.*?)</p>]]></GetRulesConn>
+      <Failure_Regex><![CDATA[]]></Failure_Regex>
+    </GetBingRankEN>
+    <!--俄文 谷歌排名列表获取正则 -->
+    <GetGoogleRankRU>
+      <GetUrl><![CDATA[http://www.google.ru/search?q=(1)&hl=ru]]></GetUrl>
+      <PageAdd><![CDATA[&start=(1)0]]></PageAdd>
+      <Regex><![CDATA[<h3 class="r">.*?<a[^<>]*?hrefs*=s*['"s]([^"']*)['"][^<>]*?>(.*?)</a></h3>]]></Regex>
+      <Failure_Regex><![CDATA[我们的系统检测到您的计算机网络中存在异常流量|请键入下图显示的字符以继续操作|https://www.google.com.hk/accounts/TOS|您的电脑或所在的局域网络有异常的访问|ipv4.google.com/sorry]]></Failure_Regex>
+    </GetGoogleRankRU>
+    <!--俄文Yandex排名获取正则-->
+    <GetYandexRankRu>
+      <GetUrl><![CDATA[http://yandex.ru/yandsearch?text=(1)]]></GetUrl>
+      <PageAdd><![CDATA[&p=(1)]]></PageAdd>
+      <Regex><![CDATA[<li class="b-serp-item.*?<a[^<>]*?hrefs*=s*['"s]([^"']*)['"][^<>]*?>(.*?)</a>(.*?)</li>]]></Regex>
+      <Failure_Regex><![CDATA[]]></Failure_Regex>
+    </GetYandexRankRu>
+    <!--法文 谷歌排名列表获取正则 -->
+    <GetGoogleRankFR>
+      <GetUrl><![CDATA[http://www.google.fr/search?q=(1)&hl=fr]]></GetUrl>
+      <PageAdd><![CDATA[&start=(1)0]]></PageAdd>
+      <Regex><![CDATA[<h3 class="r">.*?<a[^<>]*?hrefs*=s*['"s]([^"']*)['"][^<>]*?>(.*?)</a></h3>]]></Regex>
+      <Failure_Regex><![CDATA[我们的系统检测到您的计算机网络中存在异常流量|请键入下图显示的字符以继续操作|https://www.google.com.hk/accounts/TOS|您的电脑或所在的局域网络有异常的访问|ipv4.google.com/sorry]]></Failure_Regex>
+    </GetGoogleRankFR>
+  </GetRules>
+  <!--常规正则获取-->
+  <GetRoutineRules>
+    <GetRulesA><![CDATA[(?i)<\s*a[^<>]*?hrefs*\s*=\s*['"]?([^"'\s<>]*)['"]?\s*[^<>]*>(.*?)<\s*/\s*a\s*>]]></GetRulesA>
+    <GetRulesLink><![CDATA[(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:/~\+#]*[\w\-\@?^=%&amp;/~\+#])?]]></GetRulesLink>
+    <GetRulesH3><![CDATA[<h3(.*?)</h3>]]></GetRulesH3>
+  </GetRoutineRules>
+</AdminSeo>
